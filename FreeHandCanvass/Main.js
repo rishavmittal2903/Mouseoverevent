@@ -41,6 +41,13 @@ function erase()
     document.getElementById("objectLength").innerText="";
     ctx.clearRect(0, 0, w, h);
 }
+function getTotalLength()
+{
+    xDistance=currX-prevX;
+    yDistance=currY-prevY;
+    totalLength+=parseInt(Math.sqrt( xDistance*xDistance + yDistance*yDistance));
+    return totalLength;
+}
 function findxy(res, e) {
 if (res == 'down') {
     prevX = currX;
@@ -67,8 +74,7 @@ if (res == 'move') {
         prevY = currY;
         currX = e.clientX - canvas.offsetLeft;
         currY = e.clientY - canvas.offsetTop;
-        totalLength+=currX;
-        document.getElementById("objectLength").innerText=totalLength;
+        document.getElementById("objectLength").innerText=getTotalLength();
         draw();
     }
     else
